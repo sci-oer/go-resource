@@ -1,7 +1,7 @@
-[![Deployment](https://github.com/sci-oer/MY_LANGUAGE-resource/actions/workflows/deployment.yml/badge.svg)](https://github.com/sci-oer/MY_LANGUAGE-resource/actions/workflows/deployment.yml)
-![Docker Image Size (latest by date)](https://img.shields.io/docker/image-size/scioer/MY_LANGUAGE-resource?style=plastic)
-![Docker Pulls](https://img.shields.io/docker/pulls/scioer/MY_LANGUAGE-resource?style=plastic)
-![GitHub](https://img.shields.io/github/license/sci-oer/MY_LANGUAGE-resource?style=plastic)
+[![Deployment](https://github.com/sci-oer/go-resource/actions/workflows/deployment.yml/badge.svg)](https://github.com/sci-oer/go-resource/actions/workflows/deployment.yml)
+![Docker Image Size (latest by date)](https://img.shields.io/docker/image-size/scioer/go-resource?style=plastic)
+![Docker Pulls](https://img.shields.io/docker/pulls/scioer/go-resource?style=plastic)
+![GitHub](https://img.shields.io/github/license/sci-oer/go-resource?style=plastic)
 
 ----
 # sci-oer Language Resource Template
@@ -14,7 +14,7 @@ an sci-oer course for a new programming language.
 ### Updating the README
 
 1. Remove this block about using the template
-2. Replace all occurrences of `MY_LANGUAGE` with the name of the language the resource is for in all files in this repository.
+2. Replace all occurrences of `go` with the name of the language the resource is for in all files in this repository.
   * Note: if the github repository or Docker image is not in the `sci-oer` / `scioer` namespace then that will need to be updated as well.
 3. Create github action secrets in the repository for `DOCKERHUB_USERNAME` and `DOCKERHUB_TOKEN` to allow the generated docker image to be uploaded.
 4. Update the Dockerfile with the language specific dependencies and jupyter labs kernel
@@ -22,9 +22,9 @@ an sci-oer course for a new programming language.
 
 ----
 
-# sci-oer MY_LANGUAGE base-resource
+# sci-oer go base-resource
 
-This is the MY_LANGUAGE specific version of the sci-oer resource.
+This is the go specific version of the sci-oer resource.
 This extends the configuration defined in the [sci-oer/base-resource](https://github.com/sci-oer/base-resource) and adds the language specific dependencies.
 
 ## Building the container
@@ -33,7 +33,7 @@ This extends the configuration defined in the [sci-oer/base-resource](https://gi
 docker build \
     --build-arg GIT_COMMIT=$(git rev-parse -q --verify HEAD) \
     --build-arg BUILD_DATE=$(date -u +"%Y-%m-%dT%H:%M:%SZ") \
-    -t scioer/MY_LANGUAGE-resource:latest .
+    -t scioer/go-resource:latest .
 ```
 
 
@@ -46,7 +46,7 @@ docker run --rm -it \
     -p 2222:22 \
     -p 8000:8000 \
     -v "$(pwd)/course:/course" \
-    scioer/MY_LANGUAGE-resource:latest
+    scioer/go-resource:latest
 ```
 
 This container is designed to be run in the foreground.
@@ -70,7 +70,7 @@ docker run -it --rm \
     -p 8000:8000 \
     -e GIT_EMAIL='student@example.com' \
     -e GIT_NAME="My StudentName" \
-    scioer/MY_LANGUAGE-resource:latest
+    scioer/go-resource:latest
 ```
 
 ### Wiki
@@ -94,7 +94,7 @@ Any user settings that are changed (such as dark mode) will also be persistent.
 
 ### Language docs
 
-The language docs for MY_LANGUAGE have been built into this image and can be accessed at http://localhost:8000.
+The language docs for go have been built into this image and can be accessed at http://localhost:8000.
 
 ### ssh to work on files using external editor
 
@@ -121,7 +121,7 @@ Unfortunately there is not currently an easy mechanism to automatically load mar
 
 To Load custom content into the container the following process is suggested:
 
-1. Start the container _with_ the volume mount `docker run -it --rm -v "$(pwd)/course:/course" scioer/MY_LANGUAGE-resource:latest`
+1. Start the container _with_ the volume mount `docker run -it --rm -v "$(pwd)/course:/course" scioer/go-resource:latest`
 2. Go to http://localhost:3000 and create all of the desired wiki pages and configurations
 3. Exit the container
 4. Replace the `database.sqlite` file with the new one from `course/wiki/database.sqlite`
@@ -139,7 +139,7 @@ isPublished: 1
 tags: coma, separated, list
 ---
 ```
-3. Start the container _with_ the volume mount `docker run -it --rm -v "$(pwd)/course:/course" scioer/MY_LANGUAGE-resources:latest`
+3. Start the container _with_ the volume mount `docker run -it --rm -v "$(pwd)/course:/course" scioer/go-resources:latest`
 4. Go to http://localhost:3000 and navigate to Administration > Storage > Local File System
 5. Enable local file storage, set the Path to `/course/wiki/files`
 6. Scroll to the bottom of the page and run `Import Everything`, now all of the wiki pages should be imported
